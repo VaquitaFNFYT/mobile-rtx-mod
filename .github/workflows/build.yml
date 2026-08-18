@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Mod
+    name: Build Android
     runs-on: ubuntu-latest
 
     steps:
