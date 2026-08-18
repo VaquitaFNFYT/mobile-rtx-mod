@@ -1,0 +1,13 @@
+{
+  "geode": "3.0.0",
+  "id": "tu_usuario.mobile_rtx",
+  "name": "Mobile RTX Light",
+  "version": "v1.0.0",
+  "developer": "TuNombre",
+  "description": "Añade efectos de iluminación estilo RTX optimizados para Android.",
+  "resources": {
+    "files": [
+      "resources/*.glsl"
+    ]
+  }
+}
