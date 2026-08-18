@@ -17,9 +17,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download Geode SDK
+      - name: Set SDK Environment
         run: |
-          git clone --recursive https://github.com/geode-sdk/geode.git $HOME/geode-sdk
           echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
 
       - name: Build Geode Mod
@@ -27,3 +26,9 @@ jobs:
         with:
           target: Android64
           build-config: Release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: geode-mod-android
+          path: build/*.geode
