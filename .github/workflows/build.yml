@@ -17,20 +17,14 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup CLI & SDK
-        run: |
-          mkdir -p $HOME/.geode/bin
-          gh release download --repo geode-sdk/cli --pattern "*v*-linux.zip" --output $HOME/geode-cli.zip
-          unzip $HOME/geode-cli.zip -d $HOME/.geode/bin
-          chmod +x $HOME/.geode/bin/geode
-          echo "$HOME/.geode/bin" >> $GITHUB_PATH
-          $HOME/.geode/bin/geode sdk install
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Geode CLI
+        uses: geode-sdk/cli-setup-action@v2
+
+      - name: Install SDK
+        run: geode sdk install
 
       - name: Build Android
-        run: |
-          geode build -p android --config Release
+        run: geode build -p android --config Release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
