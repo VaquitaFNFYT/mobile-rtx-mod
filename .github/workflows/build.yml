@@ -28,13 +28,15 @@ jobs:
       - name: Configure Geode Profile & SDK
         run: |
           mkdir -p $HOME/fake-gd
+          export GEODE_SDK="$HOME/geode-sdk"
+          echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
           geode profile add --name default $HOME/fake-gd android64
           geode sdk install $HOME/geode-sdk
-          echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
+          geode config set sdk-path $HOME/geode-sdk
 
       - name: Build Mod
         run: |
-          geode build -p android --config Release
+          geode build -p android --config Release -- -DGeode_DIR="$HOME/geode-sdk"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
