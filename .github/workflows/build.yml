@@ -20,7 +20,6 @@ jobs:
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          sdk: main
           target: Android64
 
       - name: Upload Artifact
