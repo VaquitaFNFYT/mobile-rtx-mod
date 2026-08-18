@@ -20,10 +20,13 @@ jobs:
       - name: Setup CLI & SDK
         run: |
           mkdir -p $HOME/.geode/bin
-          curl -s https://api.github.com/repos/geode-sdk/cli/releases/latest | grep "browser_download_url.*linux" | cut -d : -f 2,3 | tr -d \" | xargs wget -O $HOME/geode-cli.zip
+          gh release download --repo geode-sdk/cli --pattern "*linux*.zip" --output $HOME/geode-cli.zip
           unzip $HOME/geode-cli.zip -d $HOME/.geode/bin
+          chmod +x $HOME/.geode/bin/geode
           echo "$HOME/.geode/bin" >> $GITHUB_PATH
           $HOME/.geode/bin/geode sdk install
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Android
         run: |
