@@ -20,6 +20,7 @@ jobs:
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
         with:
+          sdk: nightlies
           platform: Android64
           config: Release
 
