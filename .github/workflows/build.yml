@@ -18,10 +18,15 @@ jobs:
           submodules: recursive
 
       - name: Setup Geode CLI
-        uses: geode-sdk/build-geode-mod/setup@main
+        run: |
+          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
+          unzip geode-cli-linux.zip -d $HOME/.local/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Build Android
-        run: geode build -p android --config Release
+      - name: Install SDK & Build Mod
+        run: |
+          geode sdk install
+          geode build -p android --config Release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
