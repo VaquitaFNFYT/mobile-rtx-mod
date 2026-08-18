@@ -18,13 +18,13 @@ jobs:
           submodules: recursive
 
       - name: Setup Geode CLI
-        uses: geode-sdk/cli-setup-action@v2
+        uses: geode-sdk/setup-geode@v1
 
-      - name: Setup SDK & Environment
+      - name: Setup SDK Profile
         run: |
-          geode profile add --name default /tmp android64
+          mkdir -p $HOME/fake-gd
+          geode profile add --name default $HOME/fake-gd android64
           geode sdk install
-          echo "GEODE_SDK=$HOME/.local/share/geode/sdk" >> $GITHUB_ENV
 
       - name: Build Mod
         run: |
