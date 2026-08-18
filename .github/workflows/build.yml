@@ -18,7 +18,7 @@ jobs:
           submodules: recursive
 
       - name: Setup Geode CLI
-        uses: geode-sdk/cli-setup-action@v2
+        uses: geode-sdk/setup-geode@v1
 
       - name: Install SDK
         run: geode sdk install
