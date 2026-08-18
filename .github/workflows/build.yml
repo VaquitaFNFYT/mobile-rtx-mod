@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-android:
     name: Build Android
     runs-on: ubuntu-latest
 
@@ -17,16 +17,13 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download Geode SDK
-        run: |
-          git clone --recursive https://github.com/geode-sdk/geode $HOME/geode-sdk
+      - name: Setup Geode CLI
+        uses: geode-sdk/build-geode-mod/setup@main
 
-      - name: Build Geode Mod
-        uses: geode-sdk/build-geode-mod@main
+      - name: Build Android
+        uses: geode-sdk/build-geode-mod/build@main
         with:
           target: Android64
-        env:
-          GEODE_SDK: ${{ runner.homedir }}/geode-sdk
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
