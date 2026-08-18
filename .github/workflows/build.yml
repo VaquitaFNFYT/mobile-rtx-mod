@@ -17,9 +17,9 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set SDK Environment
+      - name: Set Geode SDK Path
         run: |
-          echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
+          echo "GEODE_SDK=$HOME/.local/share/geode/sdk" >> $GITHUB_ENV
 
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
