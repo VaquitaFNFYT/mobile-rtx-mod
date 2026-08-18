@@ -19,8 +19,10 @@ jobs:
 
       - name: Setup Geode CLI
         run: |
-          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
-          unzip geode-cli-linux.zip -d $HOME/.local/bin
+          mkdir -p $HOME/.local/bin
+          wget https://github.com/geode-sdk/cli/releases/download/v3.8.0/geode-cli-v3.8.0-linux.zip -O $HOME/geode.zip
+          unzip $HOME/geode.zip -d $HOME/.local/bin
+          chmod +x $HOME/.local/bin/geode
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install SDK & Build Mod
