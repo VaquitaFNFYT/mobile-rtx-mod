@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build-android:
+  build:
     name: Build Android
     runs-on: ubuntu-latest
 
@@ -17,12 +17,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Geode CLI
-        uses: geode-sdk/build-geode-mod/setup@main
-
-      - name: Build Android
-        uses: geode-sdk/build-geode-mod/build@main
+      - name: Build Geode Mod
+        uses: geode-sdk/build-geode-mod@main
         with:
+          sdk: main
           target: Android64
 
       - name: Upload Artifact
