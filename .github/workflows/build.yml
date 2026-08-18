@@ -20,10 +20,10 @@ jobs:
       - name: Download Geode SDK
         run: |
           git clone --recursive https://github.com/geode-sdk/geode.git $HOME/geode-sdk
+          echo "GEODE_SDK=$HOME/geode-sdk" >> $GITHUB_ENV
 
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          sdk: $HOME/geode-sdk
           target: Android64
           build-config: Release
