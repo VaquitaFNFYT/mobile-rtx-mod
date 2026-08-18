@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p $HOME/fake-gd
           geode profile add --name default $HOME/fake-gd android64
-          geode sdk install
+          geode sdk install $HOME/geode-sdk
 
       - name: Build Mod
         run: |
@@ -40,3 +40,4 @@ jobs:
         with:
           name: geode-mod-android
           path: build/*.geode
+
