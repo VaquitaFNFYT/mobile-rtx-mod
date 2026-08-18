@@ -8,32 +8,27 @@ on:
 
 jobs:
   build:
-    name: Build Android
+    name: Build Mod
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Setup Android NDK
-        uses: nsetup/setup-ndk@v1
-        with:
-          ndk-version: r26b
-
-      - name: Setup Geode CLI
+      - name: Setup CLI & SDK
         run: |
           wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
           unzip geode-cli-linux.zip -d $HOME/.geode/bin
           echo "$HOME/.geode/bin" >> $GITHUB_PATH
+          $HOME/.geode/bin/geode sdk install
 
-      - name: Configure and Build Mod
+      - name: Build Android
         run: |
-          geode sdk install
-          geode build --platform android
+          geode build -p android --config Release
 
-      - name: Upload Mod Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: geode-mod-android
