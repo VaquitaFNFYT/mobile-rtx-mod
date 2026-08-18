@@ -14,7 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Mod
-        uses: geode-sdk/build-geode-mod@main
+      - name: Setup Geode CLI & SDK
+        uses: geode-sdk/setup-geode@v2
         with:
-          platforms: 'android32,android64'
+          sdk-version: 'v3.0.0'
+
+      - name: Build Mod
+        uses: geode-sdk/build-geode-mod@v2
+        with:
+          target: android
