@@ -27,7 +27,8 @@ jobs:
 
       - name: Configure Geode Profile & SDK
         run: |
-          geode profile add --name default --gd 2.2074 --platform android64
+          mkdir -p $HOME/fake-gd
+          geode profile add --name default $HOME/fake-gd android64
           geode sdk install
 
       - name: Build Mod
