@@ -17,11 +17,18 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Build Geode Mod
-        uses: geode-sdk/build-geode-mod@main
-        with:
-          sdk: nightly
-          target: Android64
+      - name: Setup Geode CLI
+        uses: geode-sdk/cli-setup-action@v2
+
+      - name: Setup SDK & Environment
+        run: |
+          geode profile add --name default /tmp android64
+          geode sdk install
+          echo "GEODE_SDK=$HOME/.local/share/geode/sdk" >> $GITHUB_ENV
+
+      - name: Build Mod
+        run: |
+          geode build -p android --config Release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
