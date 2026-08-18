@@ -19,3 +19,4 @@ jobs:
         with:
           combine: true
           target: android
+          platform: android
