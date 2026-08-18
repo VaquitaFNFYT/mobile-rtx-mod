@@ -25,9 +25,13 @@ jobs:
           chmod +x $HOME/.local/bin/geode
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Install SDK & Build Mod
+      - name: Configure Geode Profile & SDK
         run: |
+          geode profile add --name default --gd 2.2074 --platform android64
           geode sdk install
+
+      - name: Build Mod
+        run: |
           geode build -p android --config Release
 
       - name: Upload Artifact
