@@ -18,11 +18,10 @@ jobs:
           submodules: recursive
 
       - name: Setup Geode CLI
-        uses: geode-sdk/cli-setup-action@v2
+        uses: geode-sdk/build-geode-mod/setup@main
 
-      - name: Build Mod
-        run: |
-          geode build --platform android64
+      - name: Build Android
+        run: geode build -p android --config Release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
