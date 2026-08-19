@@ -18,7 +18,7 @@ jobs:
           submodules: recursive
 
       - name: Build Geode Mod
-        uses: geode-sdk/build-geode-mod@v3
+        uses: geode-sdk/build-geode-mod@main
         with:
           target: Android64
 
