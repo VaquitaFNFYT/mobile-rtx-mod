@@ -17,21 +17,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Geode CLI & SDK
-        run: |
-          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
-          unzip geode-cli-linux.zip -d $HOME/.local/bin
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-          export PATH="$HOME/.local/bin:$PATH"
-          
-          mkdir -p $HOME/fake-gd
-          geode profile add --name default $HOME/fake-gd android64
-          geode sdk install
-
-      - name: Build Mod
-        run: |
-          export GEODE_SDK=$HOME/.local/share/geode/sdk
-          geode build -p android --config Release
+      - name: Build Geode Mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          target: Android64
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
