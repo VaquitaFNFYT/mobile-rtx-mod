@@ -17,6 +17,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install Geode CLI
+        uses: geode-sdk/install-geode-cli@main
+
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
         with:
